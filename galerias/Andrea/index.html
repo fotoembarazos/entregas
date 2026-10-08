@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrega de Producción Visual | Proyectil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --card-bg: rgba(22, 27, 34, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --text: #f0f3f6;
+      --text-muted: #8b949e;
+      --accent: #2f81f7;
+      --accent-hover: #58a6ff;
+      --warning: #d29922;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(47, 129, 247, 0.08) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(255,255,255,0.01) 1px, transparent 1px),
+        linear-gradient(to right, rgba(255,255,255,0.01) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+    }
+
+    .media-frame {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      background: #161b22;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.92);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover .media-frame img {
+      transform: scale(1.02);
+    }
+
+    .brand-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(13, 15, 18, 0.85);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    .header-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .label-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-hover);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+
+    .description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+    }
+
+    .spec-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .spec-value {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .countdown-val {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.95rem;
+      color: var(--warning);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .actions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      padding: 0.9rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border-hover);
+    }
+
+    .btn-meta {
+      font-size: 0.75rem;
+      opacity: 0.75;
+      font-weight: 400;
+    }
+
+    .contact-footer {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.contact-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.contact-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent-hover);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.contact-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.link-arrow {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.divider {
+  color: var(--border);
+  font-size: 0.75rem;
+}
+
+    .notice strong {
+      color: var(--warning);
+      font-weight: 500;
+    }
+    .brand-link {
+  color: #ffffff;
+  font-weight: 600;
+}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <div class="media-frame">
+        <span class="brand-tag">PROYECTIL</span>
+        <img src="portada.jpg" alt="Portada de Producción">
+      </div>
+
+      <div class="content">
+        <div class="header-group">
+          <span class="label-badge">Entrega de Material</span>
+          <h1>Andrea | Book</h1>
+          <p class="description">Archivos finales, catálogo digital e impresos.</p>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">FORMATOS INCLUIDOS</div>
+            <div class="spec-value">JPG Máxima Calidad</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Disponibilidad del enlace</div>
+            <div class="spec-value countdown-val" id="countdown">Calculando...</div>
+          </div>
+        </div>
+
+        <div class="actions-list">
+          <a href="https://drive.google.com/open?id=1K4PBpe_t7Seg-Klont6yuHzvK60uagQ4&usp=drive_fs" target="_blank" class="download-btn btn-primary">
+            <span>Descargar Master (Alta Resolución)</span>
+            <span class="btn-meta">Prensa / Gran Formato</span>
+          </a>
+
+          <a href="https://drive.google.com/open?id=1p6fBMAMxLTSkvkacJBbRnoxqqwBCcNOn&usp=drive_fs" target="_blank" class="download-btn btn-secondary">
+            <span>Descargar Versión Web & Redes</span>
+            <span class="btn-meta">E-commerce / Instagram</span>
+          </a>
+          <a href="https://drive.google.com/open?id=1ljQaVs4vUCQvW99ve7ZZt9N6YE2CrvdQ&usp=drive_fs" target="_blank" class="download-btn btn-secondary">
+            <span>Descargar Galeria completa</span>
+            <span class="btn-meta">E-commerce / Instagram</span>
+          </a>
+
+
+        <div class="contact-footer">
+  <p class="contact-text">¿Requieres asistencia técnica con los archivos o un nuevo entregable?</p>
+  <div class="contact-links">
+    <a href="https://proyectilestudio.com.mx" target="_blank" rel="noopener noreferrer" class="contact-link brand-link">
+      <span>proyectilestudio.com.mx</span>
+      <span class="link-arrow">↗</span>
+    </a>
+    <span class="divider">•</span>
+    <a href="https://wa.me/525544395465?text=Hola,%20tengo%20una%20duda%20sobre%20mi%20entrega%20de%20fotos" target="_blank" rel="noopener noreferrer" class="contact-link">
+      <span>WhatsApp</span>
+    </a>
+    <span class="divider">•</span>
+    <a href="mailto:contacto@proyectilestudio.com.mx" class="contact-link">
+      <span>Correo</span>
+    </a>
+  </div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configura aquí la fecha límite de descarga (Año, Mes - 1, Día, Hora, Minuto)
+    // Nota: Los meses en JavaScript van del 0 (enero) al 11 (diciembre).
+    const expirationDate = new Date(2026, 9, 25, 23, 59, 59);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = expirationDate.getTime() - now;
+      const countdownElement = document.getElementById("countdown");
+
+      if (distance < 0) {
+        countdownElement.textContent = "Expirado";
+        countdownElement.style.color = "#f85149";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
+
+</body>
+</html>
